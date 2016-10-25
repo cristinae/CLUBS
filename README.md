@@ -1,2 +1,2 @@
-# CROLIS
-Cross-lingual Search for the PubPshyc database
+# CLUBS
+Cross-Lingual Bibliographic Search for the PubPshyc database
