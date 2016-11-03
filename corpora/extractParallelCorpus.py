@@ -129,7 +129,7 @@ def alignTitles(tit, sub, titEn, subEn, mu, sigma):
           fragmentEn = titSubEn
        else:
           fragmentEn = titEn
-    elif not lan and not lanEn:   # Both languages have subtitle. No guesses here
+    elif lan and lanEn:   # Both languages have subtitle. No guesses here
        fragment = tit + ' ' + sub
        fragmentEn = titEn + ' ' + subEn
         
