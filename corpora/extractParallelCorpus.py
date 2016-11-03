@@ -11,7 +11,7 @@ import sentenceAligner as SA
 import sentenceSplitter as SS
 #from cStringIO import StringIO
 
-baseDir = '/home/cristinae/pln/leibniz/cloud'
+baseDir = '/home/cristinae/pln/CLUBS/corpora'
 
 
 def generateFiles(setName, prefixT, prefixA):
@@ -45,6 +45,7 @@ def sentencify(fragment):
     ''' Cleans a string extracted from the xml file
     '''
 
+    fragment = unicode(fragment)
     fragment = unicode(BeautifulStoneSoup(fragment, convertEntities=BeautifulStoneSoup.ALL_ENTITIES))
 
     return fragment.encode("utf-8").strip('[]')
@@ -95,10 +96,10 @@ def alignTitles(tit, sub, titEn, subEn, mu, sigma):
 
     # We know that the two titles exist, let's see if subtitles exist
     #if sub is not None:
-    if sub:       
+    if sub is not None:       
        sub = sentencify(sub.text)
        lan = True
-    if subEn:
+    if subEn is not None:
        subEn = sentencify(subEn.text)
        lanEn = True
 
