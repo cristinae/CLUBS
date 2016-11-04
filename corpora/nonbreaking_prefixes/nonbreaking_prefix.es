@@ -80,7 +80,6 @@ admón
 afmo
 apdo
 av
-c
 c.f
 c.g
 cap
@@ -102,7 +101,6 @@ mg
 mm
 nÃºm
 núm
-p
 p.a
 p.ej
 ptas
@@ -112,7 +110,6 @@ pág
 págs
 q.e.g.e
 q.e.s.m
-s
 s.s.s
 vid
 vol
