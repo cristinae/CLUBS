@@ -38,7 +38,7 @@ def split_into_sentences(prefixes, text):
     #prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
     prefixes = '('+prefixes+')[.]'
     # @TODO: make it language independent as the prefixes
-    # (probably not relevant for the Leibniz project)
+    # (probably not relevant for the CLuBS project)
     suffixes = "(Inc|Ltd|Jr|Sr|Co)"
     starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
 
@@ -58,9 +58,9 @@ def split_into_sentences(prefixes, text):
     if "\"" in text: text = text.replace(".\"","\".")
     if "!" in text: text = text.replace("!\"","\"!")
     if "?" in text: text = text.replace("?\"","\"?")
-    text = text.replace(".",".<stop>")
-    text = text.replace("?","?<stop>")
-    text = text.replace("!","!<stop>")
+    text = text.replace(". ",".<stop>")
+    text = text.replace("? ","?<stop>")
+    text = text.replace("! ","!<stop>")
     text = text.replace("<prd>",".")
 
     sentences = text.split("<stop>")

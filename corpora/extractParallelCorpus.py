@@ -48,7 +48,7 @@ def sentencify(fragment):
     fragment = unicode(fragment)
     fragment = unicode(BeautifulStoneSoup(fragment, convertEntities=BeautifulStoneSoup.ALL_ENTITIES))
 
-    return fragment.encode("utf-8").strip('[]')
+    return fragment.encode("utf-8").replace(']','').replace('[','')
 #    return fragment.encode("utf-8").strip('[]')+'\n'
 
 
@@ -201,8 +201,9 @@ def main(setName):
                     aligned = SA.alignLists(sourceList, targetList)
                     for alignedSentence in aligned:
                         sentence = alignedSentence.split('\t')
-                        handlers[filename].write(sentence[0]+'\n')
-                        handlers[filenameEn].write(sentence[1]+'\n')
+			if (sentence[0] and sentence[1]):
+  	                      handlers[filename].write(sentence[0]+'\n')
+         	              handlers[filenameEn].write(sentence[1]+'\n')
  
 
     # Close the output files

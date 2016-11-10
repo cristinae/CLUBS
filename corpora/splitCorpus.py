@@ -8,9 +8,9 @@ import xml.etree.ElementTree as ET
 #from lxml import etree as ET
 #from lxml import objectify
 
-baseDir = '/home/cristinae/pln/leibniz/cloud'
-idsFile = 'testIDs.dat'
-corpusFile = 'corpus.xml'
+baseDir = '/home/cristinae/pln/CLUBS/corpora'
+idsFile = 'final_evaluation_corpus_950.dat'
+corpusFile = 'corpusTest.xml'
 pathFile = os.path.join(baseDir,corpusFile)
 
 
@@ -44,8 +44,8 @@ def main():
         else:
             rootTrain.append(record)
 
-    treeTest.write('corpusTest.xml', encoding='utf-8', xml_declaration=True)
-    treeTrain.write('corpusTrain.xml', encoding='utf-8', xml_declaration=True)
+    treeTest.write('corpusTest950.xml', encoding='utf-8', xml_declaration=True)
+    treeTrain.write('corpusTestDev.xml', encoding='utf-8', xml_declaration=True)
 
     #    treeTest.write('corpusTest.xml', encoding='utf-8', xml_declaration=True, default_namespace='%s' % corpusXmlns)    #for idTest in ids:
     #    element = root.find("xmlns:record[@id='%s']" % idTest, namespaces={'xmlns': 'http://ns.clirproject.net'})

@@ -41,7 +41,7 @@ def sentencify(fragment):
     fragment = unicode(fragment)
     fragment = unicode(BeautifulStoneSoup(fragment, convertEntities=BeautifulStoneSoup.ALL_ENTITIES))
 
-    return fragment.encode("utf-8").strip('[]')
+    return fragment.encode("utf-8").replace(']','').replace('[','')
 #    return fragment.encode("utf-8").strip('[]')+'\n'
 
  
@@ -67,22 +67,27 @@ def main(setName):
     i = 0
     for record in root:
         titles = record.find('titles')
-        titEn = titles.find("title[@lang='en']")
-        titDe = titles.find("title[@lang='de']")
-        titFr = titles.find("title[@lang='fr']")
-        titEs = titles.find("title[@lang='es']")
-        subEn = titles.find("subtitle[@lang='en']")
-        subDe = titles.find("subtitle[@lang='de']")
-        subFr = titles.find("subtitle[@lang='fr']")
-        subEs = titles.find("subtitle[@lang='es']")
+        titEn, titDe, titFr, titEs = None, None, None, None
+	subEn, subDe, subFr, subEs = None, None, None, None
+        if titles is not None:
+           titEn = titles.find("title[@lang='en']")
+           titDe = titles.find("title[@lang='de']")
+           titFr = titles.find("title[@lang='fr']")
+           titEs = titles.find("title[@lang='es']")
+           subEn = titles.find("subtitle[@lang='en']")
+           subDe = titles.find("subtitle[@lang='de']")
+           subFr = titles.find("subtitle[@lang='fr']")
+           subEs = titles.find("subtitle[@lang='es']")
         tits = [titEn, titDe, titFr, titEs]
         subs = [subEn, subDe, subFr, subEs]
         
         abstracts = record.find('abstracts')
-        sEn = abstracts.find("abstract[@lang='en']")
-        sDe = abstracts.find("abstract[@lang='de']")
-        sFr = abstracts.find("abstract[@lang='fr']")
-        sEs = abstracts.find("abstract[@lang='es']")
+        sEn, sDe, sFr, sEs = None, None, None, None
+        if abstracts is not None:
+           sEn = abstracts.find("abstract[@lang='en']")
+           sDe = abstracts.find("abstract[@lang='de']")
+           sFr = abstracts.find("abstract[@lang='fr']")
+           sEs = abstracts.find("abstract[@lang='es']")
         sabs = [sEn, sDe, sFr, sEs]
         langs = ['en', 'de', 'fr', 'es',]
 
@@ -104,6 +109,6 @@ def main(setName):
 if __name__ == "__main__":
     
     if len(sys.argv) is not 2:
-        sys.stderr.write('Usage: python %s corpusTrain.xml \n' % sys.argv[0])
+        sys.stderr.write('Usage: python %s train \n' % sys.argv[0])
         sys.exit(1)
     main(sys.argv[1])
