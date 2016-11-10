@@ -10,16 +10,19 @@ PubPshyc database
 - README 
 - splitCorpus.py 
 - extractParallelCorpus.py
+- extractMonolingualCorpus.py 
 - sentenceAligner.py
 - sentenceSplitter.py
-- extractMonolingualCorpus.py 
-- testIDs.dat
+- splitAbstractSentences.py
+- final_evaluation_corpus_950.dat
+- final_testcorpus_MT.dat
+- final_testIDs.dat
 
 
 ### Pipeline
 
 1. Split the original xml file into training and test according to a list of
-   IDs for testing (testIDs.dat)
+   IDs for testing (final_testIDs.dat)
 
    python splitCorpus.py
 
