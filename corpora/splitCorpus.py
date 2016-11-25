@@ -9,8 +9,8 @@ import xml.etree.ElementTree as ET
 #from lxml import objectify
 
 baseDir = '/home/cristinae/pln/CLUBS/corpora'
-idsFile = 'final_evaluation_corpus_950.dat'
-corpusFile = 'corpusTest.xml'
+idsFile = 'final_evaluation_IDs.dat'
+corpusFile = 'corpus.xml'
 pathFile = os.path.join(baseDir,corpusFile)
 
 
@@ -24,7 +24,7 @@ def main():
     # It is difficult to deal with namespaces in python
     # I just remove them
     for line in fileinput.input(pathFile, inplace=True):
-        print line.replace(" xmlns=\"http://ns.clirproject.net\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"Corpus.xsd\"", ""),
+        print line.replace(" xmlns=\"http://ns.clubs-project.eu\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"Corpus.xsd\"", ""),
         
     #Read the full corpus into a tree structure
     print ("Reading corpus...")
@@ -44,8 +44,8 @@ def main():
         else:
             rootTrain.append(record)
 
-    treeTest.write('corpusTest950.xml', encoding='utf-8', xml_declaration=True)
-    treeTrain.write('corpusTestDev.xml', encoding='utf-8', xml_declaration=True)
+    treeTest.write('corpusTest.xml', encoding='utf-8', xml_declaration=True)
+    treeTrain.write('corpusTrain.xml', encoding='utf-8', xml_declaration=True)
 
     #    treeTest.write('corpusTest.xml', encoding='utf-8', xml_declaration=True, default_namespace='%s' % corpusXmlns)    #for idTest in ids:
     #    element = root.find("xmlns:record[@id='%s']" % idTest, namespaces={'xmlns': 'http://ns.clirproject.net'})
