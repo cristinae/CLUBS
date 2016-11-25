@@ -14,9 +14,9 @@ PubPshyc database
 - sentenceAligner.py
 - sentenceSplitter.py
 - splitAbstractSentences.py
-- final_evaluation_corpus_950.dat
-- final_testcorpus_MT.dat
-- final_testIDs.dat
+- final_evaluation_corpus_parallelAbst_IDs.dat
+- final_evaluation_corpus_only-en_IDs.dat
+- final_evaluation_IDs.dat
 
 
 ### Pipeline
@@ -29,13 +29,20 @@ PubPshyc database
 
 2. Extract the parallel corpora for the three language pairs for the desired partition
 
-   python extractParallelCorpus.py test950
+   python extractParallelCorpus.py test
    python extractParallelCorpus.py train
 
 
 3. Extract the monolingual corpora for the four languages
 
    python extractMonolingualCorpus.py train
+   
+   
+### Utilities
+
+1. Sentence splitter for the abstracts
+
+   python splitAbstractSentences.py train
 
 
 
