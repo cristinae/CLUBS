@@ -48,7 +48,12 @@ def sentencify(fragment):
     fragment = unicode(fragment)
     fragment = unicode(BeautifulStoneSoup(fragment, convertEntities=BeautifulStoneSoup.ALL_ENTITIES))
 
-    return fragment.encode("utf-8").replace(']','').replace('[','')
+    cleanFrag = fragment.encode("utf-8").replace(']','').replace('[','')
+    if (cleanFrag.isupper()):
+	return cleanFrag.lower()
+
+    return cleanFrag
+
 #    return fragment.encode("utf-8").strip('[]')+'\n'
 
 
