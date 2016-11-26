@@ -12,7 +12,7 @@ import sentenceSplitter as SS
 #from cStringIO import StringIO
 
 baseDir = '/home/cristinae/pln/CLUBS/corpora'
-
+minlen = 5 # minimum length for a sentence in the abstract to be considered
 
 def generateFiles(setName, prefixT, prefixA):
     ''' Generates the names of the output files for the three language pairs
@@ -207,8 +207,9 @@ def main(setName):
                     for alignedSentence in aligned:
                         sentence = alignedSentence.split('\t')
 			if (sentence[0] and sentence[1]):
-  	                      handlers[filename].write(sentence[0]+'\n')
-         	              handlers[filenameEn].write(sentence[1]+'\n')
+                             if (len(sentence[0])>minlen and len(sentence[1])>minlen):
+  	                         handlers[filename].write(sentence[0]+'\n')
+         	                 handlers[filenameEn].write(sentence[1]+'\n')
  
 
     # Close the output files
