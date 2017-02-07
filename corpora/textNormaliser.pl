@@ -11,8 +11,9 @@
 
 use warnings;
 use strict;
+use Encode;
 
-binmode(STDIN, ":utf8");
+#binmode(STDIN, ":encoding(utf8)");
 binmode(STDOUT, ":utf8");
 
 my $language = "en";
@@ -23,7 +24,7 @@ while (@ARGV) {
     /^-b$/ && ($| = 1, next); # not buffered (flush each line)
     /^-l$/ && ($language = shift, next);
     /^[^\-]/ && ($language = $_, next);
-  	/^-penn$/ && ($PENN = 1, next);
+    /^-penn$/ && ($PENN = 1, next);
 }
 
 while(<STDIN>) {
@@ -43,6 +44,8 @@ while(<STDIN>) {
       s/\'\'/ \" /g;
     }
 
+    s/’/'/g;
+    s/‘/'/g;
     s/„/\"/g;
     s/“/\"/g;
     s/”/\"/g;
@@ -51,9 +54,8 @@ while(<STDIN>) {
     s/´/\'/g;
     s/([a-z])‘([a-z])/$1\'$2/gi;
     s/([a-z])’([a-z])/$1\'$2/gi;
-    s/‘/\"/g;
-    s/‚/\"/g;
-    s/’/\"/g;
+    #s/‘/\"/g;
+    #s/’/\"/g;
     s/''/\"/g;
     s/´´/\"/g;
     s/…/.../g;
@@ -116,38 +118,39 @@ while(<STDIN>) {
  
     # English "quotation," followed by comma, style
     if ($language eq "en") {
-	s/\"([,\.]+)/$1\"/g;
+       s/\"([,\.]+)/$1\"/g;
     }
     # Czech is confused
     elsif ($language eq "cs" || $language eq "cz") {
     }
     # German/Spanish/French "quotation", followed by comma, style
     else {
-	s/,\"/\",/g;	
-	s/(\.+)\"(\s*[^<])/\"$1$2/g; # don't fix period at end of sentence
+      s/,\"/\",/g;
+      s/(\.+)\"(\s*[^<])/\"$1$2/g; # don't fix period at end of sentence
     }
 
-    # French apostrophes are separated in some corpora
     if ($language eq "fr") {
 	s/c '/c'/g;
 	s/d '/d'/g;
 	s/l '/l'/g;
- 	s/n '/n'/g;
- 	s/s '/s'/g;
- 	s/qu '/qu'/g;
- 	s/C '/C'/g;
+	s/n '/n'/g;
+	s/s '/s'/g;
+	s/j '/j'/g;
+	s/qu '/qu'/g;
+	s/C '/C'/g;
 	s/D '/D'/g;
 	s/L '/L'/g;
- 	s/N '/N'/g;
- 	s/S '/S'/g;
- 	s/Qu '/Qu'/g;
+	s/N '/N'/g;
+	s/S '/S'/g;
+	s/J '/J'/g;
+	s/Qu '/Qu'/g;
     }
 
     #if ($language eq "de" || $language eq "es" || $language eq "cz" || $language eq "cs" || $language eq "fr") {
-    #	s/(\d) (\d)/$1,$2/g;
+    #s/(\d) (\d)/$1,$2/g;
     #}
     #else {
-    #	s/(\d) (\d)/$1.$2/g;
+    #s/(\d) (\d)/$1.$2/g;
     #}
-    print "$_\n";
+    print decode_utf8("$_\n");
 }
