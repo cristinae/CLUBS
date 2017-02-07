@@ -132,7 +132,6 @@ while(<STDIN>) {
     if ($language eq "fr") {
 	s/c '/c'/g;
 	s/d '/d'/g;
-	s/j '/j'/g;
 	s/l '/l'/g;
 	s/n '/n'/g;
 	s/s '/s'/g;
@@ -140,7 +139,6 @@ while(<STDIN>) {
 	s/qu '/qu'/g;
 	s/C '/C'/g;
 	s/D '/D'/g;
-	s/J '/J'/g;
 	s/L '/L'/g;
 	s/N '/N'/g;
 	s/S '/S'/g;
