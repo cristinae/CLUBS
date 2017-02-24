@@ -31,6 +31,8 @@ def split_into_sentences(prefixes, text):
     '''
 
     caps = "([A-Z])"
+    capsM = "([A-Z]{2,})"
+    roman = "(I|II|III|IV|V|VI|VII|VIII|IX|X)"
 
     acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
     websites = "[.](com|net|org|io|gov|edu|de|es|fr|uk|eu)"
@@ -47,13 +49,18 @@ def split_into_sentences(prefixes, text):
     text = re.sub(prefixes,"\\1<prd>",text)
     text = re.sub(websites,"<prd>\\1",text)
     if "Ph.D" in text: text = text.replace("Ph.D.","Ph<prd>D<prd>")
-    text = re.sub("\s" + caps + "[.] "," \\1<prd> ",text)
+    text = re.sub(roman + "[.] " + caps,"\\1.<stop> \\2",text)
+    text = re.sub(" " + capsM + "[.] "," \\1.<stop> ",text)
+    #print(text)
+    #print("2")
     text = re.sub(acronyms+" "+starters,"\\1<stop> \\2",text)
     text = re.sub(caps + "[.]" + caps + "[.]" + caps + "[.]","\\1<prd>\\2<prd>\\3<prd>",text)
     text = re.sub(caps + "[.]" + caps + "[.]","\\1<prd>\\2<prd>",text)
+    text = re.sub(caps + "[.] " + caps + "[.] ","\\1<prd> \\2<prd> ",text)
+    text = re.sub(caps + "[.] " + caps,"\\1<prd> \\2 ",text)
     text = re.sub(" "+suffixes+"[.] "+starters," \\1<stop> \\2",text)
     text = re.sub(" "+suffixes+"[.]"," \\1<prd>",text)
-    text = re.sub(" " + caps + "[.]"," \\1<prd>",text)
+    #text = re.sub(" " + caps + "[.]"," \\1<prd>",text)
     if "”" in text: text = text.replace(".”","”.")
     if "\"" in text: text = text.replace(".\"","\".")
     if "!" in text: text = text.replace("!\"","\"!")
@@ -62,6 +69,7 @@ def split_into_sentences(prefixes, text):
     text = text.replace("? ","?<stop>")
     text = text.replace("! ","!<stop>")
     text = text.replace("<prd>",".")
+    text = text + "<stop>"
 
     sentences = text.split("<stop>")
     sentences = sentences[:-1]

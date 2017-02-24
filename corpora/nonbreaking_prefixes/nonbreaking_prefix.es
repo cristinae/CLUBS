@@ -3,32 +3,32 @@
 
 #any single upper case letter  followed by a period is not a sentence ender
 #usually upper case letters are initials in a name
-A
-B
-C
-D
-E
-F
-G
-H
-I
-J
-K
-L
-M
-N
-O
-P
-Q
-R
-S
-T
-U
-V
-W
-X
-Y
-Z
+#A
+#B
+#C
+#D
+#E
+#F
+#G
+#H
+#I
+#J
+#K
+#L
+#M
+#N
+#O
+#P
+#Q
+#R
+#S
+#T
+#U
+#V
+#W
+#X
+#Y
+#Z
 
 # Period-final abbreviation list from http://www.ctspanish.com/words/abbreviations.htm
 
@@ -113,3 +113,4 @@ q.e.s.m
 s.s.s
 vid
 vol
+min

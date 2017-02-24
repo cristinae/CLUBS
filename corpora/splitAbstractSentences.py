@@ -28,7 +28,8 @@ def sentencify(fragment):
 def main(setName):
 
     corpusIn = 'corpus'+setName.capitalize()+'.xml'
-    corpusOut = 'corpus'+setName.capitalize()+'.snt.xml'
+    corpusIn = 'corpus'+setName+'.xml'
+    corpusOut = 'corpus'+setName.capitalize()+'.KKsnt.xml'
 
     # Read the full corpus into a tree structure
     print ("Reading corpus...")
@@ -54,10 +55,12 @@ def main(setName):
 
         for lang in zip(langs, sabs):
             if lang[1] is not None:
+	       #raw_input('ss')
                sentences = SS.splitter(lang[0], sentencify(lang[1].text))
 	       abstractSentences = '\n'.join(sentences)
-	       #sys.stderr.write(abstractSentences)
-	       lang[1].text = abstractSentences.decode('utf-8')
+	       #sys.stderr.write(sentences[0])
+	       lang[1].text = abstractSentences.decode('utf-8','strict')
+	       #print(lang[1].text)
 
     # Close the output files
     tree.write(corpusOut, encoding='utf-8')
