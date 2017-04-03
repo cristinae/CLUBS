@@ -69,7 +69,13 @@ def getGaussian(srcLan, tgtLan):
                  'enes': (1.133, 0.415),
                  'fren': (0.914, 0.313),
                  'enfr': (1.158, 0.411)
-    }
+ 		 'dees': (0.996, 0.314), 
+		 'esde': (1.105, 1.323), 
+		 'frde': (1.023, 0.537), 
+		 'defr': (1.030, 0.304),
+		 'esfr': (1.044, 0.381), 
+		 'esfr': (1.016, 0.326) 
+   }
 
     return gaussian[srcLan+tgtLan]
 
